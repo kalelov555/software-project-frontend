@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox, message } from 'antd';
+import { Form, Input, Button, Card, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -53,61 +53,56 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h1>You have to login first</h1>
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        style={{ maxWidth: "300px" }}
-      >
-        <Form.Item
-          name="username"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
+    <Card style={{ display: "flex", justifyContent: "center", paddingTop: "5%", border: "1px solid" }} >
+      <div>
+        <h1>You have to login first</h1>
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          style={{ maxWidth: "300px" }}
         >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
-            name="identifier"
-            onChange={handleChange} />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: 'Please input your Username!' }]}
+          >
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Username"
+              name="identifier"
+              onChange={handleChange}
+              size="large" />
+          </Form.Item>
+          <Form.Item
             name="password"
-            onChange={handleChange}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-
+            rules={[{ required: true, message: 'Please input your Password!' }]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+              size="large"
+            />
           </Form.Item>
 
-          <a className="login-form-forgot" href="" style={{ float: "left" }}>
-            Forgot password
-          </a>
-        </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+              style={{ width: "100 %" }}
+            >
+              <Link href={"/login"}>Log in</Link>
 
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            style={{ width: "100 %" }}
-          >
-            Log in
-          </Button>
-          Or <Link href="/signup">register now!</Link>
-        </Form.Item>
-      </Form>
-    </div>
+            </Button>
+            <Link href="/signup"><a style={{ paddingLeft: "15%" }}>register now!</a></Link>
+          </Form.Item>
+        </Form>
+      </div>
+    </Card>
   )
 };
 
